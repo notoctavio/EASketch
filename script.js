@@ -1,5 +1,12 @@
 const container = document.querySelector('#container');
 const sizeBtn = document.querySelector('#sizeBtn');
+const clearBtn = document.querySelector('#clearBtn');
+
+clearBtn.addEventListener('click', function () {
+    container.replaceChildren(); // Clear existing squares
+
+    createGrid(16); // Reset to default grid size
+});
 
 sizeBtn.addEventListener('click', function () {
     let input = prompt("Enter new grid size (1-100):");
@@ -33,7 +40,8 @@ function createGrid(size) {
         square.style.height = squareSize + '%';
 
         square.addEventListener('mouseover', function () {
-            square.classList.add('drawn');
+            const randomColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+            square.style.backgroundColor = randomColor;
         });
 
         container.appendChild(square);
